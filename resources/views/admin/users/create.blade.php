@@ -3,8 +3,6 @@
 @section('title','Crear usuario')
 
 @section('content')
-
-	
 	<form method="POST" action="http://localhost:8000/admin/users" accept-charset="UTF-8"><input  
 		name="_token" type="hidden" value="{{ csrf_token() }}">
 	

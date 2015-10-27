@@ -16,7 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::orderBy('id','ASC')->paginate(5);
+        return view('admin.users.index')->with('users',$users); 
     }
 
     /**
@@ -37,10 +38,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {        
+         
         $user=new User($request->all());
+        //por alguna razon tengo que especificar el tipo
+        $user->type=$request->type;
+        //dd($user->type);
+        //encriptamos la contraseña
         $user->password= bcrypt($request-> password);
         $user->save();
         dd('usuario creado');
+       
     }
 
     /**
