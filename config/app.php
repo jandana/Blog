@@ -147,6 +147,7 @@ return [
 
         /* Mis Providers*/    
         Laracasts\Flash\FlashServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -198,7 +199,9 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         /*Mis Aliases*/
-         'Flash'     => Laracasts\Flash\Flash::class,
+        'Flash'     => Laracasts\Flash\Flash::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 
