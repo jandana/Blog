@@ -3,6 +3,17 @@
 @section('title','Crear usuario')
 
 @section('content')
+	
+	@if(count($errors)>0)
+		<div class="alert alert-danger" role="alert">
+			<ul>
+				@foreach($errors->all() as $error)
+					<li> {{$error}}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+
 	<form method="POST" action="http://localhost:8000/admin/users" accept-charset="UTF-8"><input  
 		name="_token" type="hidden" value="{{ csrf_token() }}">
 	
