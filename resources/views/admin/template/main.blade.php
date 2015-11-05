@@ -9,6 +9,7 @@
 		@include('admin.template.partials.nav')
 		<section>
 			@include('flash::message')
+			@include('admin.template.partials.errors')
 			@yield('content')	
 		</section>
 		<script src="{{asset('plugins/jquery/js/jquery-2.1.4.js')}}"></script>

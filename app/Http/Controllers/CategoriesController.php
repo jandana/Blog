@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Http\Requests\CategoryRequest;
+use App\Category;
 use Laracasts\Flash\Flash;
-use App\Http\Requests\UserRequest;
 
-class UsersController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users=User::orderBy('id','ASC')->paginate(5);
-        return view('admin.users.index')->with('users',$users); 
+        return  view('admin.categories.index');
     }
 
     /**
@@ -29,7 +28,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -38,19 +37,12 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
-    {        
-         
-        $user=new User($request->all());
-        //por alguna razon tengo que especificar el tipo
-        $user->type=$request->type;
-        //dd($user->type);
-        //encriptamos la contraseña
-        $user->password= bcrypt($request-> password);
-        $user->save();
-        Flash::success("Se ha registrado ".$user->name ." de forma exitosa.");
-        return redirect()->route('admin.users.index');
-       
+    public function store(CategoryRequest $request)
+    {
+        $category=new Category($request->all());
+        $category->save();
+        Flash::success('La categoria '.$category->name .' ha sido agregada exitosamente');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -72,9 +64,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
-        //dd($user->name);
-        return view('admin.users.edit')->with('user',$user);
+        //
     }
 
     /**
@@ -86,14 +76,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id);
-        $user->fill($request->all());
-       // $user->name=$request->name;
-       // $user->email=$request->email;
-       // $user->type=$request->type;
-        $user->save();
-        Flash::warning('El usuario '.$user->name.' ha sido editado exitosamente');
-        return redirect()->route('admin.users.index');
+        //
     }
 
     /**
@@ -104,9 +87,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user=User::find($id);
-        $user->delete();
-        Flash::warning('El usuario '. $user->name. ' a sido eleiminado de  forma exitosa');
-        return redirect()->route('admin.users.index');
+        //
     }
 }
