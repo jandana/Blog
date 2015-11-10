@@ -26,10 +26,11 @@
   						@else
 							<span class="label label-primary"><?php  echo $user->type; ?> </span>
   						@endif
-  					</td>
-				
-  					<td><a href="{{route('admin.users.destroy', $user->id)}}" class="btn btn-danger" onclick="return confirm('¿Seguro que deseas eliminarlo?')"></a> 
-                <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-warning"></a></td>
+  					</td>			
+  					<td>
+                <a href="{{route('admin.users.destroy', $user->id)}}" class="btn btn-danger" onclick="return confirm('¿Seguro que deseas eliminarlo?')"></a> 
+                <a href="{{route('admin.users.edit', $user->id)}}" class="btn btn-warning"></a>
+            </td>
   				</tr>
   			@endforeach
   		</tbody>
