@@ -16,9 +16,10 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags=Tag::orderBy('id','DESC')->paginate(5);
+        //el scope se puede llamar con Tag::scopeSearch pero se peude hacer mas simple
+        $tags=Tag::search($request->name)->orderBy('id','DESC')->paginate(5);
         return view('admin.tags.index')->with('tags',$tags);;
     }
 
