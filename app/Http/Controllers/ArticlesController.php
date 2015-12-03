@@ -11,6 +11,8 @@ use App\Article;
 use App\Image;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
+use App\Http\Requests\ArticleRequest;
+
 
 class ArticlesController extends Controller
 {
@@ -42,7 +44,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         //manipulacion de imagenes
        if($request->file('image')){
